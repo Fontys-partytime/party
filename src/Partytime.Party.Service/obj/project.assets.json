@@ -345,9 +345,11 @@
           }
         }
       },
-      "Partytime.Common/1.0.0": {
+      "Partytime.Common/1.0.1": {
         "type": "package",
         "dependencies": {
+          "MassTransit.AspNetCore": "7.3.1",
+          "MassTransit.RabbitMQ": "8.0.14",
           "Microsoft.Extensions.Configuration": "7.0.0",
           "Microsoft.Extensions.Configuration.Binder": "7.0.4"
         },
@@ -1238,14 +1240,14 @@
         "postgresql.png"
       ]
     },
-    "Partytime.Common/1.0.0": {
-      "sha512": "Q0x8Y0extR9p3JCl9xUCUVmvZHyMZZ1vPbCUg2e8QDjmJzvImarOKUYU5YhDgILrDqwULOTuWKqWdV1dreVfJA==",
+    "Partytime.Common/1.0.1": {
+      "sha512": "mi2THqJZRTjLx+0WgvUT0pfvCgLRk04G+UtyVUvmmJ0F2NG+kggHbp20GcgjpJLuUTMRHb8EIV4OFbv1opQGOQ==",
       "type": "package",
-      "path": "partytime.common/1.0.0",
+      "path": "partytime.common/1.0.1",
       "files": [
         ".nupkg.metadata",
         "lib/net7.0/Partytime.Common.dll",
-        "partytime.common.1.0.0.nupkg.sha512",
+        "partytime.common.1.0.1.nupkg.sha512",
         "partytime.common.nuspec"
       ]
     },
@@ -1647,11 +1649,9 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "MassTransit.AspNetCore >= 7.3.1",
-      "MassTransit.RabbitMQ >= 8.0.14",
       "Microsoft.AspNetCore.OpenApi >= 7.0.4",
       "Npgsql >= 7.0.2",
-      "Partytime.Common >= 1.0.0",
+      "Partytime.Common >= 1.0.1",
       "Partytime.Party.Contracts >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
@@ -1700,14 +1700,6 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
-          "MassTransit.AspNetCore": {
-            "target": "Package",
-            "version": "[7.3.1, )"
-          },
-          "MassTransit.RabbitMQ": {
-            "target": "Package",
-            "version": "[8.0.14, )"
-          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[7.0.4, )"
@@ -1718,7 +1710,7 @@
           },
           "Partytime.Common": {
             "target": "Package",
-            "version": "[1.0.0, )"
+            "version": "[1.0.1, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

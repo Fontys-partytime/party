@@ -1,6 +1,5 @@
-using MassTransit;
-using Partytime.Party.Service.Settings;
-
+using Partytime.Common.MassTransit;
+using Partytime.Common.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,15 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Get service settings
 var serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
-// Specify RabbitMQ usage
-builder.Services.AddMassTransit(x => 
-{
-    x.UsingRabbitMq((context, configurator) => {
-        var rabbitMQSettings = builder.Configuration.GetSection(nameof(RabbitMQSettings)).Get<RabbitMQSettings>();
-        configurator.Host(rabbitMQSettings.Host);
-        configurator.ConfigureEndpoints(context, new KebabCaseEndpointNameFormatter(serviceSettings.ServiceName, false));
-    });
-});
+// Use the common code and initialize what was here before
+builder.Services.AddMassTransitWithRabbitMq();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

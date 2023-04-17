@@ -18,9 +18,9 @@ namespace Partytime.Party.Service.Controllers
 
         private static readonly List<PartyDto> parties = new()
         {
-            new PartyDto(Guid.NewGuid(), "userIdString", "Party 1", "Description of party 1", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "ExampleStreet 1", 123456 , DateTimeOffset.UtcNow),
-            new PartyDto(Guid.NewGuid(), "userIdString", "Party 2", "Description of party 2", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "ExampleStreet 3", 123456 , DateTimeOffset.UtcNow),
-            new PartyDto(Guid.NewGuid(), "userIdString", "Party 3", "Description of party 3", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "ExampleStreet 5", 123456 , DateTimeOffset.UtcNow)
+            new PartyDto(Guid.NewGuid(), Guid.NewGuid(), "Party 1", "Description of party 1", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "ExampleStreet 1", 123456 , DateTimeOffset.UtcNow),
+            new PartyDto(Guid.NewGuid(), Guid.NewGuid(), "Party 2", "Description of party 2", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "ExampleStreet 3", 123456 , DateTimeOffset.UtcNow),
+            new PartyDto(Guid.NewGuid(), Guid.NewGuid(), "Party 3", "Description of party 3", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "ExampleStreet 5", 123456 , DateTimeOffset.UtcNow)
         };
 
         [HttpGet]
