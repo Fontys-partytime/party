@@ -1,5 +1,6 @@
 using Partytime.Common.MassTransit;
 using Partytime.Common.Settings;
+using Partytime.Party.Service.Clients;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,11 @@ var serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).
 
 // Use the common code and initialize what was here before
 builder.Services.AddMassTransitWithRabbitMq();
+
+// Makes it easy to communicate between microservices
+builder.Services.AddHttpClient<JoinedClient>(client => {
+    client.BaseAddress = new Uri("https://localhost:5005");
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

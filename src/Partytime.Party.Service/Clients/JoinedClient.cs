@@ -12,9 +12,9 @@ namespace Partytime.Party.Service.Clients
 
         // Searches for every joined person in the joined microservice
         // by filtering through PartyId
-        public async Task<ICollection<PartyJoinedDto>> GetPartyJoinedByPartyAsync(Guid partyId)
+        public async Task<List<PartyJoinedDto>> GetPartyJoinedByPartyAsync(Guid partyId)
         {
-            var partyJoined = await httpClient.GetFromJsonAsync<ICollection<PartyJoinedDto>>("/joined/" + partyId);
+            var partyJoined = await httpClient.GetFromJsonAsync<List<PartyJoinedDto>>("/joined/" + partyId);
             
             return partyJoined;
         }

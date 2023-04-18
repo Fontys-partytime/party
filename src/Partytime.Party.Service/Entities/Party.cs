@@ -9,6 +9,5 @@ namespace Partytime.Party.Service.Entities
         public DateTimeOffset Starts { get; set; }
         public DateTimeOffset Ends { get; set; }
         public decimal Budget { get; set; }
-    
     }
 }
