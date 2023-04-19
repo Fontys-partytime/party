@@ -40,6 +40,8 @@ namespace Partytime.Party.Service.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<PartyDto>> GetByIdAsync(Guid id)
         {
+            // Used for demo purposes walking skeleton
+            var hardcodedReply = new CommandMessage("Hardcoded reply");
             var party = parties.Where(party => party.Id == id).SingleOrDefault();
             
             if(party == null)
@@ -60,7 +62,11 @@ namespace Partytime.Party.Service.Controllers
             // Guid id, string Title, string Description, DateTimeOffset Starts, DateTimeOffset Ends, string Location
             await publishEndpoint.Publish(new PartyGetById(party.Id, party.Title, party.Description, party.Starts, party.Ends, party.Location));
             
-            return Ok(party);
+            // Send hardcoded reply on consuming of the message
+            await publishEndpoint.Publish(hardcodedReply);
+            
+            return Ok(hardcodedReply);
+            //return Ok(party);
         }
 
         [HttpPost]

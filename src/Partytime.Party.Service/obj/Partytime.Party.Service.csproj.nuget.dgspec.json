@@ -105,6 +105,10 @@
               "target": "Package",
               "version": "[7.0.4, )"
             },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.17.2, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[7.0.2, )"
@@ -112,6 +116,10 @@
             "Partytime.Common": {
               "target": "Package",
               "version": "[1.0.1, )"
+            },
+            "Partytime.Joined.Contracts": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
