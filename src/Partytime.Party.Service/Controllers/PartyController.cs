@@ -11,17 +11,19 @@ namespace Partytime.Party.Service.Controllers
     public class PartyController : ControllerBase
     {
         private readonly IPublishEndpoint publishEndpoint;
-        private readonly JoinedClient joinedClient;
+
+        //private readonly JoinedClient joinedClient;
 
         // These Guid's are purely for testing purposes between services and to show the teacher that the
         // walking skeleton works
         private static Guid defaultPartyGuid = Guid.NewGuid();
         private static Guid defaultUserGuid = Guid.NewGuid();
         
-        public PartyController(IPublishEndpoint publishEndpoint, JoinedClient joinedClient)
+        public PartyController(IPublishEndpoint publishEndpoint//, JoinedClient joinedClient
+        )
         {
             this.publishEndpoint = publishEndpoint;
-            this.joinedClient = joinedClient;
+            //this.joinedClient = joinedClient;
         }
 
         private static readonly List<PartyDto> parties = new()
@@ -41,7 +43,6 @@ namespace Partytime.Party.Service.Controllers
         public async Task<ActionResult<PartyDto>> GetByIdAsync(Guid id)
         {
             // Used for demo purposes walking skeleton
-            var hardcodedReply = new CommandMessage("Hardcoded reply");
             var party = parties.Where(party => party.Id == id).SingleOrDefault();
             
             if(party == null)
@@ -50,23 +51,20 @@ namespace Partytime.Party.Service.Controllers
             }
 
             // Internal communication between microservices Party & Joined
-            var joinedParty = await joinedClient.GetPartyJoinedByPartyAsync(id);
+            //var joinedParty = await joinedClient.GetPartyJoinedByPartyAsync(id);
 
             // Need extensions to 'extend' the normal Party entity together with joined
-            if(joinedParty != null)
-            {
-                party = party.AsDto(joinedParty); // Add joined to party when found
-            }
+            //if(joinedParty != null)
+            //{
+            //    party = party.AsDto(joinedParty); // Add joined to party when found
+            //}
 
             // For now limited to these variables to make the base for my walking skeleton
             // Guid id, string Title, string Description, DateTimeOffset Starts, DateTimeOffset Ends, string Location
             await publishEndpoint.Publish(new PartyGetById(party.Id, party.Title, party.Description, party.Starts, party.Ends, party.Location));
             
-            // Send hardcoded reply on consuming of the message
-            await publishEndpoint.Publish(hardcodedReply);
-            
-            return Ok(hardcodedReply);
-            //return Ok(party);
+            //return Ok(hardcodedReply);
+            return Ok(party);
         }
 
         [HttpPost]
@@ -78,7 +76,8 @@ namespace Partytime.Party.Service.Controllers
             parties.Add(party);
 
             // Returns the GetById link of the created party
-            return CreatedAtAction(nameof(GetByIdAsync), new {id = party.Id}, party);
+            //return CreatedAtAction(nameof(GetByIdAsync), new {id = party.Id}, party);
+            return Ok(party);
         }
 
         [HttpPut("{id}")]

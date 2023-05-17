@@ -13,9 +13,10 @@ var serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).
 builder.Services.AddMassTransitWithRabbitMq();
 
 // Makes it easy to communicate between microservices
-builder.Services.AddHttpClient<JoinedClient>(client => {
-    client.BaseAddress = new Uri("https://localhost:5005");
-});
+// builder.Services.AddHttpClient<JoinedClient>(client => {
+//     client.BaseAddress = new Uri("https://localhost:5004");
+// });
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -31,7 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

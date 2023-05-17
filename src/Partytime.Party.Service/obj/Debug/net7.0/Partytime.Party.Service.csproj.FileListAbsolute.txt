@@ -40,3 +40,6 @@ C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Deb
 C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Debug\net7.0\RabbitMQ.Client.dll
 C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Debug\net7.0\Partytime.Party.Contracts.dll
 C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Debug\net7.0\Partytime.Party.Contracts.pdb
+C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Debug\net7.0\Partytime.Common.dll
+C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Debug\net7.0\Partytime.Joined.Contracts.dll

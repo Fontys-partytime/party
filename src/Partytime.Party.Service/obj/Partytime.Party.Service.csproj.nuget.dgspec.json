@@ -14,6 +14,7 @@
         "outputPath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
+          "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\NuGet.Config",
           "C:\\Users\\Tommie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -21,9 +22,9 @@
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\Tommie\\source\\repos\\packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/I457616/partytime/_packaging/Partytime.Common/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/I457616/partytime/_packaging/Partytime.Joined.Contracts/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
@@ -70,6 +71,7 @@
         "outputPath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
+          "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\NuGet.Config",
           "C:\\Users\\Tommie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -77,9 +79,9 @@
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\Tommie\\source\\repos\\packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/I457616/partytime/_packaging/Partytime.Common/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/I457616/partytime/_packaging/Partytime.Joined.Contracts/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
@@ -101,6 +103,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.4, )"
@@ -115,7 +121,7 @@
             },
             "Partytime.Common": {
               "target": "Package",
-              "version": "[1.0.1, )"
+              "version": "[1.0.2, )"
             },
             "Partytime.Joined.Contracts": {
               "target": "Package",

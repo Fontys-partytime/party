@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "2aNJ23tEwHFEnU+W/tPNiHVo5B9oM8fgciJxKxVIcwjJBa8p1aUNOAk8HpyRX+mBrWrK+ix+GtRMZjnIFwipyA==",
+  "dgSpecHash": "iR9XaV39Xjnk+VZ9xC7tvay/gjJ560MH1hYIs0fmOgawFiByNlqX92fgfmkJmKSe6TjfvCGXVwsdGpqcvAgBfQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Tommie\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\masstransit\\8.0.14\\masstransit.8.0.14.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\masstransit.abstractions\\8.0.14\\masstransit.abstractions.8.0.14.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\masstransit.aspnetcore\\7.3.1\\masstransit.aspnetcore.7.3.1.nupkg.sha512",
@@ -25,7 +26,7 @@
     "C:\\Users\\Tommie\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.2\\microsoft.visualstudio.azure.containers.tools.targets.1.17.2.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\npgsql\\7.0.2\\npgsql.7.0.2.nupkg.sha512",
-    "C:\\Users\\Tommie\\.nuget\\packages\\partytime.common\\1.0.1\\partytime.common.1.0.1.nupkg.sha512",
+    "C:\\Users\\Tommie\\.nuget\\packages\\partytime.common\\1.0.2\\partytime.common.1.0.2.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\partytime.joined.contracts\\1.0.0\\partytime.joined.contracts.1.0.0.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\rabbitmq.client\\6.4.0\\rabbitmq.client.6.4.0.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",

@@ -1,5 +1,4 @@
 using MassTransit;
-using MassTransit.Transports;
 using Partytime.Joined.Contracts;
 using Partytime.Party.Contracts;
 
