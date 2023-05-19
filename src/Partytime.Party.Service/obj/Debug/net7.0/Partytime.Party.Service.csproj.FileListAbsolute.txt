@@ -43,3 +43,6 @@ C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Deb
 C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Debug\net7.0\Partytime.Common.dll
 C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Debug\net7.0\Partytime.Joined.Contracts.dll
+C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Tommie\source\repos\Partytime.Party\src\Partytime.Party.Service\bin\Debug\net7.0\Dapper.dll

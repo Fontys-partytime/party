@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Partytime.Party.Contracts;
 using Partytime.Party.Service.Clients;
 using Partytime.Party.Service.Dtos;
+using Partytime.Party.Service.Entities;
+using Partytime.Party.Service.Repositories;
+using AutoMapper;
+using static Dapper.SqlMapper;
 
 namespace Partytime.Party.Service.Controllers
 {
@@ -10,45 +14,41 @@ namespace Partytime.Party.Service.Controllers
     [Route("parties")]
     public class PartyController : ControllerBase
     {
-        private readonly IPublishEndpoint publishEndpoint;
+        private readonly IPartyRepository _partyRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
+        private readonly IMapper _mapper;
 
         //private readonly JoinedClient joinedClient;
 
-        // These Guid's are purely for testing purposes between services and to show the teacher that the
-        // walking skeleton works
-        private static Guid defaultPartyGuid = Guid.NewGuid();
-        private static Guid defaultUserGuid = Guid.NewGuid();
-        
-        public PartyController(IPublishEndpoint publishEndpoint//, JoinedClient joinedClient
+        public PartyController(IPartyRepository partyRepository, IPublishEndpoint publishEndpoint, IMapper mapper//, JoinedClient joinedClient
         )
         {
-            this.publishEndpoint = publishEndpoint;
+            this._partyRepository = partyRepository ?? throw new ArgumentNullException(nameof(partyRepository));
+            this._publishEndpoint = publishEndpoint;
+            this._mapper = mapper;
             //this.joinedClient = joinedClient;
         }
 
-        private static readonly List<PartyDto> parties = new()
-        {
-            new PartyDto(defaultPartyGuid, defaultUserGuid, "Party 1", "Description of party 1", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "ExampleStreet 1", 123456),
-            new PartyDto(Guid.NewGuid(), Guid.NewGuid(), "Party 2", "Description of party 2", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "ExampleStreet 3", 123456),
-            new PartyDto(Guid.NewGuid(), Guid.NewGuid(), "Party 3", "Description of party 3", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "ExampleStreet 5", 123456)
-        };
-
         [HttpGet]
-        public async Task<IEnumerable<PartyDto>> GetAsync()
+        public async Task<ActionResult<List<PartyDto>>> GetAsync()
         {
-            return parties;
+            var parties = await _partyRepository.GetParties();
+
+            if (parties == null)
+                return NotFound();
+
+            return (Ok(parties));
+
+            return Ok(_mapper.Map<List<PartyDto>>(parties));
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<PartyDto>> GetByIdAsync(Guid id)
         {
-            // Used for demo purposes walking skeleton
-            var party = parties.Where(party => party.Id == id).SingleOrDefault();
-            
-            if(party == null)
-            {
+            var partyFound = await _partyRepository.GetPartyById(id);
+
+            if (partyFound == null)
                 return NotFound();
-            }
 
             // Internal communication between microservices Party & Joined
             //var joinedParty = await joinedClient.GetPartyJoinedByPartyAsync(id);
@@ -61,63 +61,52 @@ namespace Partytime.Party.Service.Controllers
 
             // For now limited to these variables to make the base for my walking skeleton
             // Guid id, string Title, string Description, DateTimeOffset Starts, DateTimeOffset Ends, string Location
-            await publishEndpoint.Publish(new PartyGetById(party.Id, party.Title, party.Description, party.Starts, party.Ends, party.Location));
+            await _publishEndpoint.Publish(new PartyGetById(partyFound.Id, partyFound.Title, partyFound.Description, partyFound.Starts, partyFound.Ends, partyFound.Location));
             
             //return Ok(hardcodedReply);
-            return Ok(party);
+            return Ok(_mapper.Map<PartyDto>(partyFound));
         }
 
         [HttpPost]
-        public ActionResult<PartyDto> Post(CreatePartyDto createPartyDto)
+        public async Task<ActionResult<PartyDto>> Post([FromBody] CreatePartyDto createPartyDto)
         {
-            // Need to add a function in Program.cs that automatically converts to ISODateTime for starts and ends
-            // https://stackoverflow.com/questions/68539924/c-wrong-datetime-format-passed-to-front-end
-            var party = new PartyDto(Guid.NewGuid(), createPartyDto.UserId, createPartyDto.Title, createPartyDto.Description, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, createPartyDto.Location, createPartyDto.Budget); 
-            parties.Add(party);
+            var party = new Entities.Party
+            {
+                UserId = createPartyDto.UserId,
+                Title = createPartyDto.Title,
+                Description = createPartyDto.Description,
+                Starts = createPartyDto.Starts,
+                Ends = createPartyDto.Ends,
+                Location = createPartyDto.Location,
+                Budget = createPartyDto.Budget,
+            };
+
+            Entities.Party createdParty = await _partyRepository.CreateParty(party);
 
             // Returns the GetById link of the created party
-            //return CreatedAtAction(nameof(GetByIdAsync), new {id = party.Id}, party);
-            return Ok(party);
+            return CreatedAtAction(nameof(GetByIdAsync), new {id = createdParty.Id}, createdParty);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, UpdatePartyDto updatePartyDto)
+        public async Task<ActionResult<bool>> Put(Guid id, [FromBody] UpdatePartyDto updatePartyDto)
         {
-            var existingParty = parties.Where(party => party.Id == id).SingleOrDefault();
-            
-            if(existingParty == null)
-            {
+            Entities.Party partyFound = await _partyRepository.GetPartyById(id);
+
+            if (partyFound == null)
                 return NotFound();
-            }
 
-            var updatedParty = existingParty with {
-                Title = updatePartyDto.Title,
-                Description = updatePartyDto.Description,
-                Starts = DateTimeOffset.UtcNow,
-                Ends = DateTimeOffset.UtcNow,
-                Location = updatePartyDto.Location,
-                Budget = updatePartyDto.Budget
-            };
-
-            var index = parties.FindIndex(existingParty => existingParty.Id == id);
-            parties[index] = updatedParty;
-
-            return NoContent();
+            return Ok(await _partyRepository.UpdateParty(_mapper.Map<Entities.Party>(updatePartyDto)));
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public async Task<ActionResult<bool>> Delete(Guid id)
         {
-            var index = parties.FindIndex(existingParty => existingParty.Id == id);
-            
-            if(index < 0)
-            {
-                return NotFound();
-            }
-            
-            parties.RemoveAt(index);
+            Entities.Party partyFound = await _partyRepository.GetPartyById(id);
 
-            return NoContent();
+            if (partyFound == null)
+                return NotFound();
+            
+            return Ok(await _partyRepository.DeleteParty(id));
         }
 
     }

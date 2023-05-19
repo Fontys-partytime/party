@@ -8,10 +8,10 @@ namespace Partytime.Party.Service.Repositories
 {
     public interface IPartyRepository
     {
-        Task<IEnumerable<Entities.Party>>? GetParties();
-        Task<Entities.Party> GetPartyById(string id);
-        Task<bool> CreateParty();
-        Task<bool> UpdateParty();
-        Task<bool> DeleteParty();
+        Task<List<Entities.Party>>? GetParties();
+        Task<Entities.Party> GetPartyById(Guid id);
+        Task<Entities.Party> CreateParty(Entities.Party party);
+        Task<Entities.Party> UpdateParty(Entities.Party party);
+        Task<bool> DeleteParty(Guid id);
     }
 }

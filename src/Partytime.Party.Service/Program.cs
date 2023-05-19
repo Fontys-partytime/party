@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Hosting;
 using Partytime.Common.MassTransit;
 using Partytime.Common.Settings;
 using Partytime.Party.Service.Clients;
+using Partytime.Party.Service.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,8 @@ builder.Services.AddMassTransitWithRabbitMq();
 
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<IPartyRepository, PartyRepository>();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -26,11 +30,12 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{ THIS IS COMMMENTED UNTILL THE END OF THE DEVELOPMENT PHASE SO YOU CAN TEST SWAGGER ON DOCKER
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 //app.UseHttpsRedirection();
 
