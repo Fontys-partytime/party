@@ -20,7 +20,7 @@ namespace Partytime.Party.Consumers
             var message = context.Message;
 
             // 4. Respond hard coded reply
-            await context.RespondAsync(new CommandMessage("Harcoded reply"));
+            //await context.RespondAsync(new CommandMessage("Harcoded reply"));
         }
     }
 

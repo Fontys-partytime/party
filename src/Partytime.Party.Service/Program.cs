@@ -3,6 +3,9 @@ using Partytime.Common.MassTransit;
 using Partytime.Common.Settings;
 using Partytime.Party.Service.Clients;
 using Partytime.Party.Service.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Partytime.Party.Service.Entities;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +24,12 @@ builder.Services.AddMassTransitWithRabbitMq();
 
 
 builder.Services.AddControllers();
+//builder.Services.AddCustomJwtAuthentication();
+
+builder.Services.AddDbContext<PartyContext>(opt =>
+    opt
+    .UseNpgsql(builder.Configuration.GetValue<string>("DatabaseSettings:ConnectionString"))
+    .UseSnakeCaseNamingConvention());
 builder.Services.AddScoped<IPartyRepository, PartyRepository>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

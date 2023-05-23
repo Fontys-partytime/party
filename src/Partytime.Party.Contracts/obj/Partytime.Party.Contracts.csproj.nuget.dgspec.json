@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj": {}
+    "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj": {
+    "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj",
+        "projectUniqueName": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj",
         "projectName": "Partytime.Party.Contracts",
-        "projectPath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj",
+        "projectPath": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj",
         "packagesPath": "C:\\Users\\Tommie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\obj\\",
+        "outputPath": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\NuGet.Config",
+          "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\NuGet.Config",
           "C:\\Users\\Tommie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

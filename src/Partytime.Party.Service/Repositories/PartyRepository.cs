@@ -9,76 +9,73 @@ using System.Threading.Tasks;
 using System.IO;
 using Partytime.Party.Service.Dtos;
 using MassTransit.JobService;
+using Microsoft.EntityFrameworkCore;
 
 namespace Partytime.Party.Service.Repositories
 {
     public class PartyRepository : IPartyRepository
     {
-        private readonly IConfiguration _configuration;
+        private readonly PartyContext _context;
 
-        public PartyRepository(IConfiguration configuration)
+        public PartyRepository(PartyContext context)
         {
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration)); 
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<List<Entities.Party>>? GetParties()
+        public async Task<List<Entities.Party>> GetParties()
         {
-            using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
-
-            List<Entities.Party> parties = (List<Entities.Party>)await connection.QueryAsync<Entities.Party>("SELECT * FROM party");
+            List<Entities.Party> parties = await _context.Parties.ToListAsync();
 
             return parties;
         }
 
-        public async Task<Entities.Party> GetPartyById(Guid id)
+        public async Task<Entities.Party?> GetPartyById(Guid id)
         {
-            using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
-
-            Entities.Party party = await connection.QueryFirstOrDefaultAsync<Entities.Party>("SELECT * FROM party WHERE Id=@id::uuid", new { id });
+            var party = await _context.Parties.FindAsync(id);
 
             return party;
         }
 
         public async Task<Entities.Party> CreateParty(Entities.Party party)
         {
-            using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
-            
-            var query = @"INSERT INTO party (UserId,Title,Description,Starts,Ends,Location,Budget) VALUES (@party.UserId,@party.Title,@party.Description,@party.Starts,@party.Ends,@party.Location,@party.Budget)";
-            var partyCreated = await connection.ExecuteAsync(query);
+            await _context.Parties.AddAsync(party);
+            await _context.SaveChangesAsync();
 
             return party;
         }
 
-        public async Task<Entities.Party> UpdateParty(Entities.Party party)
+        public async Task<Entities.Party> UpdateParty(Guid id, Entities.Party party)
         {
-            using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
+            var partyFound = _context.Parties.FirstOrDefault(prty => prty.Id == id);
 
-            // @party.Id,@party.UserId,@party.Title,@party.Description,@party.Starts,@party.Ends,@party.Budget
-            var query = @"update party 
-                set Id = @party.Id,
-                set UserId = @party.UserId,
-                set Title = @party.Title,
-                set Description = @party.Description,
-                set Starts = @party.Starts,
-                set Ends = @party.Ends,
-                set Location = @party.Location,
-                set Budget = @party.Budget";
-            var partyCreated = await connection.ExecuteAsync(query);
+            if(partyFound != null)
+            {
+                partyFound.Userid = party.Userid;
+                partyFound.Title = party.Title;
+                partyFound.Description = party.Description;
+                partyFound.Starts = party.Starts;
+                partyFound.Ends = party.Ends;
+                partyFound.Location = party.Location;
+                partyFound.Budget = party.Budget;
 
+                await _context.SaveChangesAsync();
+                return partyFound;
+            }
+            
             return party;
         }
 
         public async Task<bool> DeleteParty(Guid id)
         {
-            using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
+            var partyToDelete = _context.Parties.SingleOrDefault(party => party.Id == id);
+            
+            if (partyToDelete != null) {
+                _context.Parties.Remove(partyToDelete);
+                await _context.SaveChangesAsync();
+                return true;
+            }
 
-            var query = @"DELETE FROM party WHERE Id = @id";
-
-            var deleted = await connection.ExecuteAsync(query);
-
-            if (deleted == 0)
-                return false;
-            return true;
+            return false;
         }
     }
 }

@@ -16,16 +16,14 @@ namespace Partytime.Party.Service.Controllers
     {
         private readonly IPartyRepository _partyRepository;
         private readonly IPublishEndpoint _publishEndpoint;
-        private readonly IMapper _mapper;
 
         //private readonly JoinedClient joinedClient;
 
-        public PartyController(IPartyRepository partyRepository, IPublishEndpoint publishEndpoint, IMapper mapper//, JoinedClient joinedClient
+        public PartyController(IPartyRepository partyRepository, IPublishEndpoint publishEndpoint//, JoinedClient joinedClient
         )
         {
             this._partyRepository = partyRepository ?? throw new ArgumentNullException(nameof(partyRepository));
             this._publishEndpoint = publishEndpoint;
-            this._mapper = mapper;
             //this.joinedClient = joinedClient;
         }
 
@@ -37,13 +35,11 @@ namespace Partytime.Party.Service.Controllers
             if (parties == null)
                 return NotFound();
 
-            return (Ok(parties));
-
-            return Ok(_mapper.Map<List<PartyDto>>(parties));
+            return Ok(parties);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<PartyDto>> GetByIdAsync(Guid id)
+        public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             var partyFound = await _partyRepository.GetPartyById(id);
 
@@ -61,10 +57,10 @@ namespace Partytime.Party.Service.Controllers
 
             // For now limited to these variables to make the base for my walking skeleton
             // Guid id, string Title, string Description, DateTimeOffset Starts, DateTimeOffset Ends, string Location
-            await _publishEndpoint.Publish(new PartyGetById(partyFound.Id, partyFound.Title, partyFound.Description, partyFound.Starts, partyFound.Ends, partyFound.Location));
+            //await _publishEndpoint.Publish(new PartyGetById(partyFound.Id, partyFound.Title, partyFound.Description, partyFound.Starts, partyFound.Ends, partyFound.Location));
             
             //return Ok(hardcodedReply);
-            return Ok(_mapper.Map<PartyDto>(partyFound));
+            return Ok(partyFound);
         }
 
         [HttpPost]
@@ -72,7 +68,7 @@ namespace Partytime.Party.Service.Controllers
         {
             var party = new Entities.Party
             {
-                UserId = createPartyDto.UserId,
+                Userid = createPartyDto.Userid,
                 Title = createPartyDto.Title,
                 Description = createPartyDto.Description,
                 Starts = createPartyDto.Starts,
@@ -84,29 +80,42 @@ namespace Partytime.Party.Service.Controllers
             Entities.Party createdParty = await _partyRepository.CreateParty(party);
 
             // Returns the GetById link of the created party
-            return CreatedAtAction(nameof(GetByIdAsync), new {id = createdParty.Id}, createdParty);
+            return Ok();
+            //return CreatedAtAction(nameof(GetByIdAsync), new {id = createdParty.Id}, createdParty);
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<bool>> Put(Guid id, [FromBody] UpdatePartyDto updatePartyDto)
         {
-            Entities.Party partyFound = await _partyRepository.GetPartyById(id);
+            var party = new Entities.Party
+            {
+                Userid = updatePartyDto.Userid,
+                Title = updatePartyDto.Title,
+                Description = updatePartyDto.Description,
+                Starts = updatePartyDto.Starts,
+                Ends = updatePartyDto.Ends,
+                Location = updatePartyDto.Location,
+                Budget = updatePartyDto.Budget,
+            };
 
-            if (partyFound == null)
+            var updatedParty = await _partyRepository.UpdateParty(id, party);
+
+            if(updatedParty == null)
                 return NotFound();
 
-            return Ok(await _partyRepository.UpdateParty(_mapper.Map<Entities.Party>(updatePartyDto)));
+            return Ok(updatedParty);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(Guid id)
         {
-            Entities.Party partyFound = await _partyRepository.GetPartyById(id);
+            var partyFound = await _partyRepository.GetPartyById(id);
 
             if (partyFound == null)
                 return NotFound();
             
-            return Ok(await _partyRepository.DeleteParty(id));
+            bool partyDeleted = await _partyRepository.DeleteParty(id);
+            return Ok(partyDeleted);
         }
 
     }

@@ -9,9 +9,9 @@ namespace Partytime.Party.Service.Repositories
     public interface IPartyRepository
     {
         Task<List<Entities.Party>>? GetParties();
-        Task<Entities.Party> GetPartyById(Guid id);
+        Task<Entities.Party?> GetPartyById(Guid id);
         Task<Entities.Party> CreateParty(Entities.Party party);
-        Task<Entities.Party> UpdateParty(Entities.Party party);
+        Task<Entities.Party> UpdateParty(Guid id, Entities.Party party);
         Task<bool> DeleteParty(Guid id);
     }
 }

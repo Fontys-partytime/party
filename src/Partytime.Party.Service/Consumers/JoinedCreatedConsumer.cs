@@ -1,16 +1,17 @@
 using MassTransit;
 using Partytime.Joined.Contracts;
 using Partytime.Party.Contracts;
+using Partytime.Party.Service.Repositories;
 
 namespace Partytime.Party.Consumers
 {
     public class JoinedCreatedConsumer : IConsumer<JoinedCreated>
     {
-        private readonly IPublishEndpoint publishEndpoint;
+        private readonly IPartyRepository partyRepository;
         
-        public JoinedCreatedConsumer(IPublishEndpoint publishEndpoint)
+        public JoinedCreatedConsumer()
         {
-            this.publishEndpoint = publishEndpoint;
+            
         }
 
         public async Task Consume(ConsumeContext<JoinedCreated> context)
