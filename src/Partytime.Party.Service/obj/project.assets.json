@@ -31,19 +31,6 @@
           "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
-      "Dapper/2.0.123": {
-        "type": "package",
-        "compile": {
-          "lib/net5.0/Dapper.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net5.0/Dapper.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "EFCore.NamingConventions/7.0.2": {
         "type": "package",
         "dependencies": {
@@ -805,7 +792,7 @@
           "lib/net7.0/Partytime.Common.dll": {}
         }
       },
-      "Partytime.Joined.Contracts/1.0.0": {
+      "Partytime.Joined.Contracts/1.0.1": {
         "type": "package",
         "compile": {
           "lib/net7.0/Partytime.Joined.Contracts.dll": {}
@@ -1123,24 +1110,6 @@
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "icon.png",
         "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
-      ]
-    },
-    "Dapper/2.0.123": {
-      "sha512": "RDFF4rBLLmbpi6pwkY7q/M6UXHRJEOerplDGE5jwEkP/JGJnBauAClYavNKJPW1yOTWRPIyfj4is3EaJxQXILQ==",
-      "type": "package",
-      "path": "dapper/2.0.123",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Dapper.png",
-        "dapper.2.0.123.nupkg.sha512",
-        "dapper.nuspec",
-        "lib/net461/Dapper.dll",
-        "lib/net461/Dapper.xml",
-        "lib/net5.0/Dapper.dll",
-        "lib/net5.0/Dapper.xml",
-        "lib/netstandard2.0/Dapper.dll",
-        "lib/netstandard2.0/Dapper.xml"
       ]
     },
     "EFCore.NamingConventions/7.0.2": {
@@ -2445,14 +2414,14 @@
         "partytime.common.nuspec"
       ]
     },
-    "Partytime.Joined.Contracts/1.0.0": {
-      "sha512": "wcJhn7/FS1kISyo7fgXbKOEybOerdpDLKawqe1YeiDD7xMTaUblR6fPSpq0TIbrH78Ao4mKwNzv971vYO7S9kA==",
+    "Partytime.Joined.Contracts/1.0.1": {
+      "sha512": "D8BB8DLVgW7hz/PhUg+9QfdeczxnRWXthN8iJGCimWT9RUz+lh6jV+biGcGPoyOcA/IT2c5nIT8cnIdhHCLeDg==",
       "type": "package",
-      "path": "partytime.joined.contracts/1.0.0",
+      "path": "partytime.joined.contracts/1.0.1",
       "files": [
         ".nupkg.metadata",
         "lib/net7.0/Partytime.Joined.Contracts.dll",
-        "partytime.joined.contracts.1.0.0.nupkg.sha512",
+        "partytime.joined.contracts.1.0.1.nupkg.sha512",
         "partytime.joined.contracts.nuspec"
       ]
     },
@@ -3143,14 +3112,13 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
-      "Dapper >= 2.0.123",
       "EFCore.NamingConventions >= 7.0.2",
       "Microsoft.AspNetCore.OpenApi >= 7.0.4",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.5",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.2",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 7.0.4",
       "Partytime.Common >= 1.0.8",
-      "Partytime.Joined.Contracts >= 1.0.0",
+      "Partytime.Joined.Contracts >= 1.0.1",
       "Partytime.Party.Contracts >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
@@ -3161,14 +3129,14 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj",
+      "projectUniqueName": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj",
       "projectName": "Partytime.Party.Service",
-      "projectPath": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj",
+      "projectPath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj",
       "packagesPath": "C:\\Users\\Tommie\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\obj\\",
+      "outputPath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\NuGet.Config",
+        "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\NuGet.Config",
         "C:\\Users\\Tommie\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3184,8 +3152,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj": {
-              "projectPath": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj"
+            "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj": {
+              "projectPath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj"
             }
           }
         }
@@ -3203,10 +3171,6 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[12.0.1, )"
-          },
-          "Dapper": {
-            "target": "Package",
-            "version": "[2.0.123, )"
           },
           "EFCore.NamingConventions": {
             "target": "Package",
@@ -3236,7 +3200,7 @@
           },
           "Partytime.Joined.Contracts": {
             "target": "Package",
-            "version": "[1.0.0, )"
+            "version": "[1.0.1, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

@@ -12,8 +12,8 @@ using Partytime.Party.Service.Entities;
 namespace Partytime.Party.Service.Migrations
 {
     [DbContext(typeof(PartyContext))]
-    [Migration("20230519172103_ChangedUserIdCasing")]
-    partial class ChangedUserIdCasing
+    [Migration("20230526233354_RelationalFix")]
+    partial class RelationalFix
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,40 @@ namespace Partytime.Party.Service.Migrations
                 .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "uuid-ossp");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Partytime.Party.Service.Entities.Joined", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<bool?>("Accepted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("accepted");
+
+                    b.Property<Guid>("Partyid")
+                        .HasColumnType("uuid")
+                        .HasColumnName("partyid");
+
+                    b.Property<Guid>("Userid")
+                        .HasColumnType("uuid")
+                        .HasColumnName("userid");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("text")
+                        .HasColumnName("username");
+
+                    b.HasKey("Id")
+                        .HasName("pk_joined");
+
+                    b.HasIndex("Partyid")
+                        .HasDatabaseName("ix_joined_partyid");
+
+                    b.ToTable("joined", (string)null);
+                });
 
             modelBuilder.Entity("Partytime.Party.Service.Entities.Party", b =>
                 {
@@ -64,6 +97,23 @@ namespace Partytime.Party.Service.Migrations
                         .HasName("pk_party");
 
                     b.ToTable("party", (string)null);
+                });
+
+            modelBuilder.Entity("Partytime.Party.Service.Entities.Joined", b =>
+                {
+                    b.HasOne("Partytime.Party.Service.Entities.Party", "Party")
+                        .WithMany("Joined")
+                        .HasForeignKey("Partyid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_joined_party_partyid");
+
+                    b.Navigation("Party");
+                });
+
+            modelBuilder.Entity("Partytime.Party.Service.Entities.Party", b =>
+                {
+                    b.Navigation("Joined");
                 });
 #pragma warning restore 612, 618
         }

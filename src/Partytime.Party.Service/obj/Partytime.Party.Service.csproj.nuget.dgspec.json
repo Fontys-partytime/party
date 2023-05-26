@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj": {}
+    "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj": {
+    "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj",
         "projectName": "Partytime.Party.Contracts",
-        "projectPath": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj",
+        "projectPath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj",
         "packagesPath": "C:\\Users\\Tommie\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\obj\\",
+        "outputPath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\NuGet.Config",
+          "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\NuGet.Config",
           "C:\\Users\\Tommie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -61,17 +61,17 @@
         }
       }
     },
-    "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj": {
+    "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj",
+        "projectUniqueName": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj",
         "projectName": "Partytime.Party.Service",
-        "projectPath": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj",
+        "projectPath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj",
         "packagesPath": "C:\\Users\\Tommie\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\obj\\",
+        "outputPath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\NuGet.Config",
+          "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\NuGet.Config",
           "C:\\Users\\Tommie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -87,8 +87,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj": {
-                "projectPath": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj"
+              "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj": {
+                "projectPath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Contracts\\Partytime.Party.Contracts.csproj"
               }
             }
           }
@@ -106,10 +106,6 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.1, )"
-            },
-            "Dapper": {
-              "target": "Package",
-              "version": "[2.0.123, )"
             },
             "EFCore.NamingConventions": {
               "target": "Package",
@@ -139,7 +135,7 @@
             },
             "Partytime.Joined.Contracts": {
               "target": "Package",
-              "version": "[1.0.0, )"
+              "version": "[1.0.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

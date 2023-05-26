@@ -1,12 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "RisPzjw2YvXpCqyxm0srhQBtYAx1dPVkN7yID35uC6z41cS/1s9dmrAL3hQX+Iie/lpgGhgxN4qldsvre12gBw==",
+  "dgSpecHash": "+42wI7qqTT31BLTl30wLPIC+ubCaCtNNQwN/BBw66nPtW14kLgPnbuJ/wKyCWiRw8d3wJfu6Aj4YLFS/mt443g==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj",
+  "projectFilePath": "C:\\Users\\Tommie\\source\\repos\\Partytime.Party\\src\\Partytime.Party.Service\\Partytime.Party.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tommie\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
-    "C:\\Users\\Tommie\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\efcore.namingconventions\\7.0.2\\efcore.namingconventions.7.0.2.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\masstransit\\8.0.14\\masstransit.8.0.14.nupkg.sha512",
@@ -53,7 +52,7 @@
     "C:\\Users\\Tommie\\.nuget\\packages\\npgsql\\7.0.4\\npgsql.7.0.4.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.4\\npgsql.entityframeworkcore.postgresql.7.0.4.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\partytime.common\\1.0.8\\partytime.common.1.0.8.nupkg.sha512",
-    "C:\\Users\\Tommie\\.nuget\\packages\\partytime.joined.contracts\\1.0.0\\partytime.joined.contracts.1.0.0.nupkg.sha512",
+    "C:\\Users\\Tommie\\.nuget\\packages\\partytime.joined.contracts\\1.0.1\\partytime.joined.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\rabbitmq.client\\6.4.0\\rabbitmq.client.6.4.0.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\Tommie\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",

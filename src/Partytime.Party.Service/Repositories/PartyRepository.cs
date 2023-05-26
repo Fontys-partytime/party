@@ -1,5 +1,4 @@
 using Npgsql;
-using Dapper;
 using Partytime.Party.Service.Entities;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -10,6 +9,8 @@ using System.IO;
 using Partytime.Party.Service.Dtos;
 using MassTransit.JobService;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Principal;
+using Entities = Partytime.Party.Service.Entities;
 
 namespace Partytime.Party.Service.Repositories
 {
@@ -22,9 +23,15 @@ namespace Partytime.Party.Service.Repositories
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<List<Entities.Party>> GetParties()
+        public async Task<List<Entities.Party>> GetPartiesByUserId(Guid userId)
         {
-            List<Entities.Party> parties = await _context.Parties.ToListAsync();
+            List<Entities.Party> parties = await _context.Parties.Where(party => party.Userid == userId).ToListAsync();
+
+            foreach (Entities.Party party in parties)
+            {
+                List<Entities.Joined> joined = await _context.Joined.Where(joined => joined.Partyid == party.Id).ToListAsync();
+                party.Joined = joined;
+            }
 
             return parties;
         }
@@ -34,6 +41,34 @@ namespace Partytime.Party.Service.Repositories
             var party = await _context.Parties.FindAsync(id);
 
             return party;
+        }
+
+        // This is needed for walking skeleton, checks if joined already exists
+        public async Task<Entities.Party?> CheckIfJoinedExistsInParty(Guid partyId, Guid userId)
+        {
+            // Checks if there is any joined user in the joined list in the party entity
+            var party = await _context.Parties.Where(party => party.Joined.Any(joined => joined.Userid == userId)).FirstOrDefaultAsync();
+
+            return party;
+        }
+
+        // This is needed for walking skeleton, checks if joined already exists
+        public async Task<Entities.Party?> AddJoinedToParty(Guid partyId, Entities.Joined joined)
+        {
+            // Checks if there is any joined user in the joined list in the party entity
+            var partyFound = _context.Parties.FirstOrDefault(prty => prty.Id == partyId);
+
+            if(partyFound != null)
+            {
+                _context.Parties.Attach(partyFound);
+                partyFound.Joined.Add(joined);
+                _context.Entry(partyFound).State = EntityState.Modified;
+
+                await _context.SaveChangesAsync();
+                return partyFound;
+            }
+            
+            return partyFound;
         }
 
         public async Task<Entities.Party> CreateParty(Entities.Party party)

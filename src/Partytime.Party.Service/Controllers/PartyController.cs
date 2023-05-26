@@ -6,7 +6,6 @@ using Partytime.Party.Service.Dtos;
 using Partytime.Party.Service.Entities;
 using Partytime.Party.Service.Repositories;
 using AutoMapper;
-using static Dapper.SqlMapper;
 
 namespace Partytime.Party.Service.Controllers
 {
@@ -27,15 +26,15 @@ namespace Partytime.Party.Service.Controllers
             //this.joinedClient = joinedClient;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<PartyDto>>> GetAsync()
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> GetPartiesByUserId(Guid userId)
         {
-            var parties = await _partyRepository.GetParties();
+            var partyFound = await _partyRepository.GetPartiesByUserId(userId);
 
-            if (parties == null)
+            if (partyFound == null)
                 return NotFound();
 
-            return Ok(parties);
+            return Ok(partyFound);
         }
 
         [HttpGet("{id}")]
@@ -46,20 +45,6 @@ namespace Partytime.Party.Service.Controllers
             if (partyFound == null)
                 return NotFound();
 
-            // Internal communication between microservices Party & Joined
-            //var joinedParty = await joinedClient.GetPartyJoinedByPartyAsync(id);
-
-            // Need extensions to 'extend' the normal Party entity together with joined
-            //if(joinedParty != null)
-            //{
-            //    party = party.AsDto(joinedParty); // Add joined to party when found
-            //}
-
-            // For now limited to these variables to make the base for my walking skeleton
-            // Guid id, string Title, string Description, DateTimeOffset Starts, DateTimeOffset Ends, string Location
-            //await _publishEndpoint.Publish(new PartyGetById(partyFound.Id, partyFound.Title, partyFound.Description, partyFound.Starts, partyFound.Ends, partyFound.Location));
-            
-            //return Ok(hardcodedReply);
             return Ok(partyFound);
         }
 
@@ -79,9 +64,7 @@ namespace Partytime.Party.Service.Controllers
 
             Entities.Party createdParty = await _partyRepository.CreateParty(party);
 
-            // Returns the GetById link of the created party
             return Ok();
-            //return CreatedAtAction(nameof(GetByIdAsync), new {id = createdParty.Id}, createdParty);
         }
 
         [HttpPut("{id}")]

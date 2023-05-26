@@ -13,11 +13,11 @@ namespace Partytime.Party.Service.Entities
         public DateTimeOffset Ends { get; set; }
         public string? Location { get; set; }
         public decimal? Budget { get; set; }
-        public List<Joined>? joined { get; set; }
+        public List<Joined> Joined { get; set; }
 
         public Party() 
         { 
-        
+            Joined = new List<Joined>();
         }
     }
 }

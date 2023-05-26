@@ -8,7 +8,7 @@ namespace Partytime.Party.Service.Dtos // Abstracts the entity and also the prop
     
     public record CreatePartyDto([Required] Guid Userid, [Required] string? Title, string? Description, DateTimeOffset Starts, DateTimeOffset Ends, string? Location, [Range(0, 1000)] decimal? Budget);
 
-    public record UpdatePartyDto(Guid Userid, string? Title, string? Description, DateTimeOffset Starts, DateTimeOffset Ends, string? Location, [Range(0, 1000)] decimal? Budget);
+    public record UpdatePartyDto(Guid Userid, string? Title, string? Description, DateTimeOffset Starts, DateTimeOffset Ends, string? Location, [Range(0, 1000)] decimal? Budget, List<PartyJoinedDto>? JoinedParty = null);
 
     // Needed to get joined in client communication
     public record PartyJoinedDto(Guid Id, Guid Userid, DateTimeOffset JoinedDate, DateTimeOffset AcceptedDate, bool Accepted);
