@@ -24,7 +24,7 @@ stages:
   displayName: Test the application
   jobs:
   - job: Dependency
-    displayName: Dependency checking
+    displayName: Dependency checking and publishing results
     pool:
       vmImage: $(vmImageName)
     steps:
@@ -35,6 +35,12 @@ stages:
         format: 'HTML, JSON, JUNIT'
         failOnCVSS: '8'
         enableExperimental: true
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'dependency-check\*junit.xml'
+        searchFolder: '$(Common.TestResultsDirectory)'
+        testRunTitle: 'Dependency Check'
 - stage: Build
   displayName: Build and push stage
   jobs:
