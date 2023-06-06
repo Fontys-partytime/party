@@ -38,3 +38,18 @@ stages:
         tags: |
           latest
           $(Build.BuildId)
+- stage: Test
+  displayName: Test the application
+  jobs:
+  - job: Dependency
+    displayName: Dependency checking
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: dependency-check-build-task@6
+      inputs:
+        projectName: 'Partytime.Party'
+        scanPath: '**/*.csproj'
+        format: 'HTML, JSON, JUNIT'
+        failOnCVSS: '8'
+        enableExperimental: true
