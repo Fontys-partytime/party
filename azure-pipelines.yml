@@ -47,7 +47,7 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: MicrosoftSecurityDevOps@1
-    displayName: 'Microsoft Security DevOps'
+    
     
 - stage: Build
   displayName: Build and push stage
