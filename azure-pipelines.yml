@@ -23,7 +23,7 @@ stages:
 - stage: Test
   displayName: Test the application
   jobs:
-  - job: Dependency
+  - job: Testing
     displayName: Dependency checking and publishing results
     pool:
       vmImage: $(vmImageName)
@@ -41,6 +41,14 @@ stages:
         testResultsFiles: 'dependency-check\*junit.xml'
         searchFolder: '$(Common.TestResultsDirectory)'
         testRunTitle: 'Dependency Check'
+  - job: Security
+    displayName: Check for security flaws
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: MicrosoftSecurityDevOps@1
+    displayName: 'Microsoft Security DevOps'
+    
 - stage: Build
   displayName: Build and push stage
   jobs:
