@@ -47,18 +47,6 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: MicrosoftSecurityDevOps@1
-    - task: SonarCloudPrepare@1
-      inputs:
-        SonarCloud: 'SonarCloud'
-        organization: 'partytime'
-        scannerMode: 'MSBuild'
-        projectKey: 'i457616_Partytime.Party'
-        projectName: 'Partytime.Party'
-    - task: SonarCloudAnalyze@1
-    - task: SonarCloudPublish@1
-      inputs:
-        pollingTimeoutSec: '300'
-    
     
 - stage: Build
   displayName: Build and push stage
