@@ -20,6 +20,34 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
+- stage: Test
+  displayName: Test the application
+  jobs:
+  - job: Testing
+    displayName: Dependency checking and publishing results
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: dependency-check-build-task@6
+      inputs:
+        projectName: 'Partytime.Party'
+        scanPath: '**/*.csproj'
+        format: 'HTML, JSON, JUNIT'
+        failOnCVSS: '8'
+        enableExperimental: true
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'dependency-check\*junit.xml'
+        searchFolder: '$(Common.TestResultsDirectory)'
+        testRunTitle: 'Dependency Check'
+  - job: Security
+    displayName: Check for security flaws
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: MicrosoftSecurityDevOps@1
+    
 - stage: Build
   displayName: Build and push stage
   jobs:
