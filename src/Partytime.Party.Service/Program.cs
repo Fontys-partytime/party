@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Partytime.Party.Service.Entities;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json.Serialization;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,15 +38,22 @@ builder.Services.AddDbContext<PartyContext>(opt =>
     .UseSnakeCaseNamingConvention());
 builder.Services.AddScoped<IPartyRepository, PartyRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseRouting();
+
+// Prometheus
+app.UseHttpMetrics();
+app.UseMetricServer("/metrics");
+
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{ THIS IS COMMMENTED UNTILL THE END OF THE DEVELOPMENT PHASE SO YOU CAN TEST SWAGGER ON DOCKER
-    app.UseDeveloperExceptionPage();
+app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 //}

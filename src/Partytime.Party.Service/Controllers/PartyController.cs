@@ -37,6 +37,12 @@ namespace Partytime.Party.Service.Controllers
             return Ok(partyFound);
         }
 
+        [HttpGet("testvoorbeeld")]
+        public async Task<IActionResult> Test()
+        {
+            return Ok("Je kan bij de service");
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
@@ -72,13 +78,12 @@ namespace Partytime.Party.Service.Controllers
         {
             var party = new Entities.Party
             {
-                Userid = updatePartyDto.Userid,
-                Title = updatePartyDto.Title,
-                Description = updatePartyDto.Description,
-                Starts = updatePartyDto.Starts,
-                Ends = updatePartyDto.Ends,
-                Location = updatePartyDto.Location,
-                Budget = updatePartyDto.Budget,
+                Title = updatePartyDto.title,
+                Description = updatePartyDto.description,
+                Starts = updatePartyDto.starts,
+                Ends = updatePartyDto.ends,
+                Location = updatePartyDto.location,
+                Budget = updatePartyDto.budget,
             };
 
             var updatedParty = await _partyRepository.UpdateParty(id, party);

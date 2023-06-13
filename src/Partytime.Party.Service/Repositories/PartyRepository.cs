@@ -30,7 +30,7 @@ namespace Partytime.Party.Service.Repositories
             foreach (Entities.Party party in parties)
             {
                 List<Entities.Joined> joined = await _context.Joined.Where(joined => joined.Partyid == party.Id).ToListAsync();
-                party.Joined = joined;
+                    party.Joined = joined;
             }
 
             return parties;
@@ -39,6 +39,9 @@ namespace Partytime.Party.Service.Repositories
         public async Task<Entities.Party?> GetPartyById(Guid id)
         {
             var party = await _context.Parties.FindAsync(id);
+
+            List<Entities.Joined> joined = await _context.Joined.Where(joined => joined.Partyid == id).ToListAsync();
+            party.Joined = joined;
 
             return party;
         }
@@ -85,7 +88,6 @@ namespace Partytime.Party.Service.Repositories
 
             if(partyFound != null)
             {
-                partyFound.Userid = party.Userid;
                 partyFound.Title = party.Title;
                 partyFound.Description = party.Description;
                 partyFound.Starts = party.Starts;
