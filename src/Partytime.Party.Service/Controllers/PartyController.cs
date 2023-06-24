@@ -15,20 +15,13 @@ namespace Partytime.Party.Service.Controllers
     public class PartyController : ControllerBase
     {
         private readonly IPartyRepository _partyRepository;
-        private readonly IPublishEndpoint _publishEndpoint;
 
-        //private readonly JoinedClient joinedClient;
-
-        public PartyController(IPartyRepository partyRepository, IPublishEndpoint publishEndpoint//, JoinedClient joinedClient
-        )
+        public PartyController(IPartyRepository partyRepository)
         {
             this._partyRepository = partyRepository ?? throw new ArgumentNullException(nameof(partyRepository));
-            this._publishEndpoint = publishEndpoint;
-            //this.joinedClient = joinedClient;
         }
 
         [HttpGet("user/{userId}")]
-        [Authorize]
         public async Task<IActionResult> GetPartiesByUserId(Guid userId)
         {
             var partyFound = await _partyRepository.GetPartiesByUserId(userId);
@@ -40,14 +33,12 @@ namespace Partytime.Party.Service.Controllers
         }
 
         [HttpGet("testvoorbeeld")]
-        [AllowAnonymous]
         public async Task<IActionResult> Test()
         {
             return Ok("Je kan bij de service");
         }
 
         [HttpGet("{id}")]
-        [AllowAnonymous]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             var partyFound = await _partyRepository.GetPartyById(id);
@@ -59,7 +50,6 @@ namespace Partytime.Party.Service.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<ActionResult<PartyDto>> Post([FromBody] CreatePartyDto createPartyDto)
         {
             var party = new Entities.Party
@@ -79,7 +69,6 @@ namespace Partytime.Party.Service.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
         public async Task<ActionResult<bool>> Put(Guid id, [FromBody] UpdatePartyDto updatePartyDto)
         {
             var party = new Entities.Party
@@ -101,7 +90,6 @@ namespace Partytime.Party.Service.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
         public async Task<ActionResult<bool>> Delete(Guid id)
         {
             var partyFound = await _partyRepository.GetPartyById(id);
