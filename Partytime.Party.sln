@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Partytime.Party.Service", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Partytime.Party.Contracts", "src\Partytime.Party.Contracts\Partytime.Party.Contracts.csproj", "{1FF220A2-ACC0-45E1-9D03-1506555A7D56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Partytime.Party.tests", "Partytime.Party.tests\Partytime.Party.tests.csproj", "{DD308144-E197-4FC4-B462-4CE96E218287}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +23,15 @@ Global
 		{1FF220A2-ACC0-45E1-9D03-1506555A7D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FF220A2-ACC0-45E1-9D03-1506555A7D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FF220A2-ACC0-45E1-9D03-1506555A7D56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD308144-E197-4FC4-B462-4CE96E218287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD308144-E197-4FC4-B462-4CE96E218287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD308144-E197-4FC4-B462-4CE96E218287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD308144-E197-4FC4-B462-4CE96E218287}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39D79E62-B374-40C4-BE15-83C569BEE692}
 	EndGlobalSection
 EndGlobal

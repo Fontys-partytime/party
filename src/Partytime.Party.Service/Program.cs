@@ -8,6 +8,7 @@ using Partytime.Party.Service.Entities;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json.Serialization;
 using Prometheus;
+using Partytime.Common.JwtAuthentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 var serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
 // Use the common code and initialize what was here before
-builder.Services.AddMassTransitWithRabbitMq();
+//builder.Services.AddMassTransitWithRabbitMq();
 
 // Makes it easy to communicate between microservices
 // builder.Services.AddHttpClient<JoinedClient>(client => {
@@ -41,14 +42,15 @@ builder.Services.AddScoped<IPartyRepository, PartyRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCustomJwtAuthentication();
 
 var app = builder.Build();
 
 app.UseRouting();
 
 // Prometheus
-app.UseHttpMetrics();
-app.UseMetricServer("/metrics");
+//app.UseHttpMetrics();
+//app.UseMetricServer("/metrics");
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
@@ -60,7 +62,7 @@ app.UseDeveloperExceptionPage();
 
 //app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 
