@@ -10,7 +10,7 @@ namespace Partytime.Party.Service.Entities
 
             modelBuilder.HasPostgresExtension("uuid-ossp");
 
-            modelBuilder.Entity<Party>().HasMany(joined => joined.Joined).WithOne(party => party.Party);
+            //modelBuilder.Entity<Party>().HasMany(joined => joined.Joined).WithOne(party => party.Party);
         }
 
         public PartyContext(DbContextOptions<PartyContext> options)
@@ -19,6 +19,6 @@ namespace Partytime.Party.Service.Entities
         }
 
         public DbSet<Party> Parties { get; set; } = null!;
-        public DbSet<Joined> Joined { get; set; } = null!;
+        //public DbSet<Joined> Joined { get; set; } = null!;
     }
 }

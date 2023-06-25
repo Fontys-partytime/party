@@ -59,8 +59,9 @@ namespace Partytime.Party.Service.Controllers
                 Description = createPartyDto.Description,
                 Starts = createPartyDto.Starts,
                 Ends = createPartyDto.Ends,
-                Location = createPartyDto.Location,
-                Budget = createPartyDto.Budget,
+                Amount = createPartyDto.Amount,
+                Paymentlink = createPartyDto.Paymentlink,
+                Linkexperation = createPartyDto.Linkexperation
             };
 
             Entities.Party createdParty = await _partyRepository.CreateParty(party);
@@ -77,8 +78,9 @@ namespace Partytime.Party.Service.Controllers
                 Description = updatePartyDto.description,
                 Starts = updatePartyDto.starts,
                 Ends = updatePartyDto.ends,
-                Location = updatePartyDto.location,
-                Budget = updatePartyDto.budget,
+                Amount = updatePartyDto.amount,
+                Paymentlink = updatePartyDto.paymentlink,
+                Linkexperation = updatePartyDto.linkexperation
             };
 
             var updatedParty = await _partyRepository.UpdateParty(id, party);
