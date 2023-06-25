@@ -1,7 +1,6 @@
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Partytime.Party.Contracts;
-using Partytime.Party.Service.Clients;
 using Partytime.Party.Service.Dtos;
 using Partytime.Party.Service.Entities;
 using Partytime.Party.Service.Repositories;

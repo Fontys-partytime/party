@@ -19,7 +19,7 @@ namespace Partytime.Party.tests
             var publishEndPoint = A.Fake<IPublishEndpoint>();
 
             A.CallTo(() => dataStore.GetPartyById(fakeParty.Id)).Returns(fakeParty);
-            var controller = new PartyController(dataStore, publishEndPoint);
+            var controller = new PartyController(dataStore);
 
             // Act
             var actionResult = await controller.GetByIdAsync(fakeParty.Id);
@@ -39,15 +39,15 @@ namespace Partytime.Party.tests
             var dataStore = A.Fake<IPartyRepository>();
             var publishEndPoint = A.Fake<IPublishEndpoint>();
 
-            CreatePartyDto createdPartyFromDto = new CreatePartyDto(fakeParty.Userid, fakeParty.Title, fakeParty.Description, fakeParty.Starts, fakeParty.Ends, fakeParty.Location, fakeParty.Budget);
+            CreatePartyDto createdPartyFromDto = new CreatePartyDto(fakeParty.Userid, fakeParty.Title, fakeParty.Description, fakeParty.Starts, fakeParty.Ends, fakeParty.Amount, fakeParty.Paymentlink, fakeParty.Linkexperation);
             var result2 = A.CallTo(() => dataStore.CreateParty(fakeParty)).Returns(fakeParty);
 
-            UpdatePartyDto updateParty = new UpdatePartyDto(fakeParty.Title, fakeParty.Description, new DateTimeOffset(), new DateTimeOffset().AddDays(1), "", 678);
+            UpdatePartyDto updateParty = new UpdatePartyDto(fakeParty.Title, fakeParty.Description, new DateTimeOffset(), new DateTimeOffset().AddDays(1), 678, "test.com", new DateTimeOffset());
 
             var test = Task.FromResult(result2).Result;
 
             A.CallTo(() => dataStore.UpdateParty(new Guid(), fakeParty)).Returns(fakeParty);
-            var controller = new PartyController(dataStore, publishEndPoint);
+            var controller = new PartyController(dataStore);
 
             // Act
             var actionResult = await controller.Put(new Guid(), updateParty);

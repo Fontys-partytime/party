@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Partytime.Common.MassTransit;
 using Partytime.Common.Settings;
-using Partytime.Party.Service.Clients;
 using Partytime.Party.Service.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Partytime.Party.Service.Entities;
